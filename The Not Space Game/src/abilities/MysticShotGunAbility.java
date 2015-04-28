@@ -17,7 +17,7 @@ public class MysticShotGunAbility extends Ability implements Serializable {
 	private static final long serialVersionUID = -1680458584403203262L;
 
 	public MysticShotGunAbility() {
-		energyCost = 100;
+		energyCost = 103;
 		
 	}
 
