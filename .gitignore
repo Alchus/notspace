@@ -6,3 +6,5 @@
 *.rel
 *.rst
 *.sym
+/The Not Space Game/nbproject/private/
+/The Not Space Game/build/
