@@ -181,7 +181,7 @@ public abstract class Unit implements Serializable, Cloneable {
 	public void damage(double amount, Unit source) {
 		// TODO: shields
 		health -= amount;
-		energy -= amount;
+		//energy -= amount;
 	}
 
 	public void damage(double amount, Unit source, int type) {
@@ -412,7 +412,7 @@ public abstract class Unit implements Serializable, Cloneable {
 		health += (healthregen * delta / 1000.0);
 		if (health > maxhealth)
 			health = maxhealth;
-		if (health < 0)
+		if (health <= 0)
 			destroy(HEALTH);
 
 		energy += (energyregen * delta / 1000.0);

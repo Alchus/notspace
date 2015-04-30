@@ -25,20 +25,20 @@ public class Panel extends Unit {
 		mobile = true;
 
 		canCollide = true;
-		maxhealth = 500;
-		health = 500;
+		maxhealth = 600;
+		health = 600;
 
-		energy = 100;
+		energy = 425;
 		energyregen = 60;
-		maxenergy = 101;
+		maxenergy = 601;
 
-		healthregen = 105;
+		healthregen = 50;
 
 		height = 40;
 		width = 40;
 		
 		Ability ba = new SingleParticleAbility(new Drone(center().x, center().y, owner));
-		ba.energyCost = 100;
+		ba.energyCost = 600;
 		defaultIntents.add(new CastAbilityIntent(ba));
 		isSquare_notRound = false;
 	}

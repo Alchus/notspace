@@ -34,14 +34,14 @@ public class Marine extends Unit implements Serializable {
 		isHero = true;
 
 		canCollide = true;
-		maxhealth = 1000;
+		maxhealth = 500;
 		health = 1000;
 
 		energy = 200;
 		energyregen = 30;
 		maxenergy = 200;
 		
-		healthregen = 100;
+		healthregen = 0;
 
 		height = 40;
 		width = 40;
@@ -51,12 +51,12 @@ public class Marine extends Unit implements Serializable {
 		Unit ba_particle = new GenericMissile(position(), owner, new XYPair(10,10)){
 			public void onCollide(Unit u){
 				if (u.owner.isHostileTo(owner)) {
-					u.damage(101, this);
+					u.damage(200, this);
 					destroy(SELFDESTRUCT);
 				}
 			}
 		};
-		ba_particle.movespeed = 300.;
+		ba_particle.movespeed = 1200.;
 		Ability ba = new SingleParticleAbility(ba_particle){
 			public ArrayList<Intent> particleIntents(){
 				ArrayList<Intent> di = new ArrayList<Intent>();
@@ -65,7 +65,7 @@ public class Marine extends Unit implements Serializable {
 			}
 		};
 		
-		ba.cooldown = 200;
+		ba.cooldown = 400;
 		basicAttack = ba;
 
 	}
@@ -97,6 +97,9 @@ public class Marine extends Unit implements Serializable {
 		g2.setColor(controllerColor());
 		g2.drawRect(2, 2, width - 4, height - 4);
 		g2.fillRect(9, 9, 13, 13);
+                
+                drawHealthBar(g2, 10, 10 );
+                
 
 		return img;
 	}

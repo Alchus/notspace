@@ -8,6 +8,7 @@ import java.io.Serializable;
 import core.Player;
 import core.Unit;
 import core.XYPair;
+import java.awt.Color;
 
 public class Drone extends Unit implements Serializable {
 
@@ -25,8 +26,8 @@ public class Drone extends Unit implements Serializable {
 
 		canCollide = true;
 		collidesWithEnemies = true;
-		maxhealth = 100;
-		health = 100;
+		maxhealth = 600;
+		health = 600;
 		movespeed = 50;
 		energyregen = 150;
 		maxenergy = 50;
@@ -35,8 +36,8 @@ public class Drone extends Unit implements Serializable {
 
 		healthregen = 0;
 
-		height = 15;
-		width = 15;
+		height = 30;
+		width = 30;
 		
 		defaultIntents.add(new MoveToUnitIntent(Player.PLAYER1.heroUnit));
 
@@ -46,8 +47,8 @@ public class Drone extends Unit implements Serializable {
 		img = (BufferedImage) super.draw();
 		Graphics2D g2 = img.createGraphics();
 
-		g2.setColor(controllerColor());
-		g2.fillPolygon(new int[] { 0, 15, 8 }, new int[] { 0, 0, 15 }, 3);
+		g2.setColor(Color.green);
+		g2.fillPolygon(new int[] { 0, 30, 15 }, new int[] { 0, 0, 30 }, 3);
 		return img;
 	}
 
@@ -55,7 +56,7 @@ public class Drone extends Unit implements Serializable {
 
 	public void onCollide(Unit u) {
 		if (u.owner.isHostileTo(owner)) {
-			u.damage(101, this);
+			u.damage(200, this);
 			destroy(SELFDESTRUCT);
 		}
 	}
