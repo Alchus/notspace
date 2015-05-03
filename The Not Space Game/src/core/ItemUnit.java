@@ -23,9 +23,10 @@ public class ItemUnit extends Unit {
 	
 	public ItemUnit(Item item, XYPair position) {
 		this.item = item;
-		owner = Player.PASSIVE;
+		owner = Player.ITEMS;
 		mobile = true;
 		selected = false;
+                canCollide = true;
 		affectsOthersPathing = false;
 		collidesWithAllies = true;
 		collidesWithEnemies = false;
@@ -45,6 +46,10 @@ public class ItemUnit extends Unit {
 		img.getGraphics().drawImage(Item.icon,0,0,new Color(0,0,0,0),Window.main);
 		return img;
 	}
+        
+        public boolean isDead(){
+            return (super.isDead() || (item.quantity <= 0));
+        }
 	
 	
 

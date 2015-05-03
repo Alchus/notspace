@@ -19,6 +19,7 @@ import java.util.ConcurrentModificationException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import abilities.MysticShotGunAbility;
+//import items.Grenade;
 
 import units.BuildPanelButton;
 import units.DeleteButton;
@@ -45,8 +46,8 @@ Serializable {
 
 	public volatile boolean running = false;
 
-	volatile CopyOnWriteArrayList<Unit> elements = new CopyOnWriteArrayList<Unit>();
-	public volatile ArrayList<Unit> babies = new ArrayList<Unit>();
+	volatile CopyOnWriteArrayList<Unit> elements = new CopyOnWriteArrayList<>();
+	public volatile ArrayList<Unit> babies = new ArrayList<>();
 	int height = 1000;
 	int width = 2200;
 
@@ -87,7 +88,7 @@ Serializable {
 	int dragReferenceY = 0;
 	
 	
-	public static char[] keys = {'A', 'D','W','S', 'Q', 'E'};
+	public static char[] keys = {'A', 'D','W','S', 'Q', 'E', '1', '2', '3', '4'};
 	XYPair playerMovementCommandVector = new XYPair(0,0);
 	public Game() {
 
@@ -201,7 +202,7 @@ Serializable {
 		elements.add(new Panel(1000,800, Player.HOSTILE));
 		elements.add(new Panel(1400,400, Player.HOSTILE));
 		
-		elements.add(new ItemUnit(new Item(), new XYPair(500,500)));
+		elements.add(new ItemUnit(new Grenade(), new XYPair(500,500)));
 		
 		// Awesome stuff here
 	}
@@ -231,9 +232,25 @@ Serializable {
 			playerMovementCommandVector.y += (isdown ? 1.0 : -1.0);
 			break;
 		}
-		case 4:{
+		case 4:{//Q key - undefined function
 			
 		}
+                case 5:{//E key - undefined function
+			
+		}
+                case 6:{// 1 key
+			
+		}
+                case 7:{// 2 key
+			
+		}
+                case 8:{// 3 key
+			
+		}
+                case 9:{// 4 key
+			
+		}
+                
 		}//end switch
 		
 		if (mouse1State){

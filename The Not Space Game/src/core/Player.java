@@ -15,6 +15,7 @@ public class Player implements Serializable {
 	public static final Player PASSIVE = new Player(0);
 	public static final Player HOSTILE = new Player(-1);
 	public static final Player MISSILE = new Player(-4);
+	public static final Player ITEMS = new Player(-5);
 	public static final Player INTERFACE = new Player(-10);
 
 	static Player getPlayer(int index) {

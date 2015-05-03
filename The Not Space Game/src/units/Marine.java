@@ -45,6 +45,7 @@ public class Marine extends Unit implements Serializable {
 
 		height = 40;
 		width = 40;
+                itemSlots = 6;
 
 		movespeed = 200.;
 		

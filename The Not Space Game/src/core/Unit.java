@@ -181,7 +181,7 @@ public abstract class Unit implements Serializable, Cloneable {
 	public void damage(double amount, Unit source) {
 		// TODO: shields
 		health -= amount;
-		//energy -= amount;
+		energy -= amount;
 	}
 
 	public void damage(double amount, Unit source, int type) {
@@ -333,6 +333,30 @@ public abstract class Unit implements Serializable, Cloneable {
 		intents.add(incoming);
 		Collections.sort(intents);
 	}
+        
+        boolean redrawItems = false;
+        
+        public boolean giveItem(Item i){
+            redrawItems = true;
+            for (Item j : items){
+                if (j.name.hashCode() == i.name.hashCode()){
+                    j.quantity += i.quantity;
+                    return true;
+                }
+            }
+            if (items.size() >= itemSlots) 
+                return false;
+            items.add(i);
+            System.out.println("Gave a " + i.getClass() + " to a " + this.getClass());
+            return true;
+        }
+        
+        public Item getItem(int index){
+            if(items.size() > index)
+                return items.get(index);
+            return null;
+        }
+        
 
 	public Unit nearestUnit(Player controlledBy) {
 		Unit closest = null;
@@ -412,7 +436,7 @@ public abstract class Unit implements Serializable, Cloneable {
 		health += (healthregen * delta / 1000.0);
 		if (health > maxhealth)
 			health = maxhealth;
-		if (health <= 0)
+		if (health < 0)
 			destroy(HEALTH);
 
 		energy += (energyregen * delta / 1000.0);
@@ -453,6 +477,14 @@ public abstract class Unit implements Serializable, Cloneable {
 			for (Unit u : hits) {
 				if (u == this)
 					continue;
+                                if (u.owner == Player.ITEMS){
+                                    ItemUnit iu = (ItemUnit) u;
+                                    if (!iu.isDead()){
+                                        boolean success = giveItem(iu.item);
+                                        if (success) iu.destroy(0);
+                                    }
+                                    continue;
+                                }
 
 				boolean theseUnitsInteract = false;
 				if ((owner.isAlliedTo(u.owner)))

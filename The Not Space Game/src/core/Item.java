@@ -10,18 +10,29 @@ import java.awt.image.BufferedImage;
 public class Item {
 	public static int iconScale = 40;
 	public static BufferedImage icon;
-	int quantity = 1;
+	protected int quantity = 1;
+        
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    public void changeQuantity( int by){
+        quantity += by;
+    }
 	String name = "Unnamed Item";
 	long cooldown = 0;
 	long lastUsed = 0;
-	private BufferedImage img;
 	
 	public Item() {
-		icon = generateiIcon();
+		icon = generateIcon();
 	}
 	
-	public BufferedImage generateiIcon(){
-		img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB );
+	public BufferedImage generateIcon(){
+		BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB );
 
 		Graphics2D g2 = img.createGraphics();
 
@@ -36,4 +47,8 @@ public class Item {
 
 		return img;
 	}
+        
+        public void activate(){
+            
+        }
 }
