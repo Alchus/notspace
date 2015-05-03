@@ -10,5 +10,5 @@ package core;
  * @author Alchus
  */
 public class Grenade extends Item {
-    
+
 }

@@ -1,4 +1,5 @@
 package units;
+
 import intents.MoveToUnitIntent;
 
 import java.awt.Graphics2D;
@@ -12,53 +13,51 @@ import java.awt.Color;
 
 public class Drone extends Unit implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7054355014761985339L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 7054355014761985339L;
 
-	public Drone(double x, double y, Player controller) {
-		owner = controller;
+    public Drone(double x, double y, Player controller) {
+        owner = controller;
 
-		moveTo(new XYPair(x, y));
+        moveTo(new XYPair(x, y));
 
-		mobile = true;
+        mobile = true;
 
-		canCollide = true;
-		collidesWithEnemies = true;
-		maxhealth = 600;
-		health = 600;
-		movespeed = 50;
-		energyregen = 150;
-		maxenergy = 50;
-		
-		destroyOnOffMap = true;
+        canCollide = true;
+        collidesWithEnemies = true;
+        maxhealth = 600;
+        health = 600;
+        movespeed = 50;
+        energyregen = 150;
+        maxenergy = 50;
 
-		healthregen = 0;
+        destroyOnOffMap = true;
 
-		height = 30;
-		width = 30;
-		
-		defaultIntents.add(new MoveToUnitIntent(Player.PLAYER1.heroUnit));
+        healthregen = 0;
 
-	}
+        height = 30;
+        width = 30;
 
-	public BufferedImage draw() {
-		img = (BufferedImage) super.draw();
-		Graphics2D g2 = img.createGraphics();
+        defaultIntents.add(new MoveToUnitIntent(Player.PLAYER1.heroUnit));
 
-		g2.setColor(Color.green);
-		g2.fillPolygon(new int[] { 0, 30, 15 }, new int[] { 0, 0, 30 }, 3);
-		return img;
-	}
+    }
 
-	
+    public BufferedImage draw() {
+        img = (BufferedImage) super.draw();
+        Graphics2D g2 = img.createGraphics();
 
-	public void onCollide(Unit u) {
-		if (u.owner.isHostileTo(owner)) {
-			u.damage(200, this);
-			destroy(SELFDESTRUCT);
-		}
-	}
+        g2.setColor(Color.green);
+        g2.fillPolygon(new int[]{0, 30, 15}, new int[]{0, 0, 30}, 3);
+        return img;
+    }
+
+    public void onCollide(Unit u) {
+        if (u.owner.isHostileTo(owner)) {
+            u.damage(200, this);
+            destroy(SELFDESTRUCT);
+        }
+    }
 
 }
