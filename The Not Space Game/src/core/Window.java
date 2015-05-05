@@ -17,7 +17,7 @@ public class Window extends JFrame implements MouseListener,
 
     public static Window main;
 
-    static long minFrameHoldMillis = 1;// No need to push the frame rate too
+    static long minFrameHoldMillis = 1;
     // high.
     int playerNumber = 1;
     public Game game = new Game();

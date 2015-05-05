@@ -11,7 +11,7 @@ public class CastAbilityIntent extends Intent {
      */
     private static final long serialVersionUID = 3218309170771200747L;
 
-    private Ability ability;
+    public Ability ability;
 
     public CastAbilityIntent(Ability ability) {
 
@@ -34,6 +34,11 @@ public class CastAbilityIntent extends Intent {
         //	u.velocity = new XYPair(0,0);
         //}
 
+    }
+    public CastAbilityIntent clone(){
+        CastAbilityIntent copy = (CastAbilityIntent) super.clone();
+        copy.ability = this.ability.clone();
+        return copy;
     }
 
 }

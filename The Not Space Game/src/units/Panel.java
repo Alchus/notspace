@@ -38,9 +38,9 @@ public class Panel extends Unit {
         height = 40;
         width = 40;
 
-        Ability ba = new SingleParticleAbility(new Drone(center().x, center().y, owner));
-        ba.energyCost = 600;
-        defaultIntents.add(new CastAbilityIntent(ba));
+        basicAttack = new SingleParticleAbility(new Drone(center().x, center().y, owner));
+        basicAttack.energyCost = 600;
+        defaultIntents.add(new CastAbilityIntent(basicAttack));
         isSquare_notRound = false;
     }
 

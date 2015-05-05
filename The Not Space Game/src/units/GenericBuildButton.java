@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import core.Game;
+import core.Intent;
 import core.Player;
 import core.Unit;
 import core.Window;
@@ -29,6 +30,7 @@ public class GenericBuildButton extends Unit {
         genUnit.energy = genUnit.maxenergy;
 
         children.add(genUnit);
+        selectable = true;
 
     }
 
@@ -41,7 +43,6 @@ public class GenericBuildButton extends Unit {
     }
 
     public void onClick() {
-        System.out.println("Build menu button pushed");
         Window.main.game.cursor = Game.BLUEPRINT;
     }
 
@@ -55,8 +56,9 @@ public class GenericBuildButton extends Unit {
         if (collisions.length == 0) {
 
             Window.main.game.babies.add(outgoing);
+            selected = false;
+            game.cursor = Game.SELECTION;
         } else {
-            game.selection = collisions[0];
             selected = false;
             game.cursor = Game.SELECTION;
         }

@@ -33,5 +33,7 @@ public class SingleParticleAbility extends Ability {
     public ArrayList<Intent> particleIntents() {
         return new ArrayList<Intent>();
     }
+    
+  
 
 }

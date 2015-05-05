@@ -33,9 +33,10 @@ public class MoveToPointIntent extends Intent implements Serializable {
         u.moveLimit = difference;
 
         u.velocity = difference.unitVector().rescale(u.movespeed);
-
+        //System.out.println(difference.magnitude());
         if (difference.magnitude() < 1) {
             expired = true;
+            u.velocity = new XYPair(0,0);
         }
 
     }

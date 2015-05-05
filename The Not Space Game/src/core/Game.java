@@ -20,7 +20,8 @@ import java.util.ConcurrentModificationException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import abilities.MysticShotGunAbility;
-//import items.Grenade;
+import abilities.SingleParticleAbility;
+import intents.MoveToPointIntent;
 
 import units.BuildPanelButton;
 import units.DeleteButton;
@@ -32,6 +33,8 @@ import units.Node;
 import units.Panel;
 import units.SaveButton;
 import units.SelectButton;
+import units.Tower;
+import intents.CastAbilityIntent;
 
 public class Game implements MouseListener, MouseMotionListener,
         Serializable {
@@ -148,7 +151,7 @@ public class Game implements MouseListener, MouseMotionListener,
             if (consumed) {
                 break;
             }
-			// this first pass only checks interface elements, as they have
+            // this first pass only checks interface elements, as they have
             // higher
             // priority than other units.
             if (u.owner != Player.INTERFACE) {
@@ -189,9 +192,6 @@ public class Game implements MouseListener, MouseMotionListener,
         cameraMode = LOCKED_CAMERA;
         cameraFocus = next;
 
-        elements.add(new BuildPanelButton());
-        elements.add(new DeleteButton());
-        elements.add(new SelectButton());
         elements.add(new SaveButton());
         elements.add(new LoadButton());
         elements.add(new GenericBuildButton(new Panel(10, 20, Player.PLAYER1)));
@@ -199,17 +199,26 @@ public class Game implements MouseListener, MouseMotionListener,
         next.moveTo(new XYPair(600, 600));
         elements.add(next);
 
-        next = new GenericBuildButton(new Node(10, 20, Player.PLAYER1));
+        next = new GenericBuildButton(new Tower(10, 20, Player.PLAYER1));
         next.moveTo(new XYPair(700, 600));
         elements.add(next);
 
-        elements.add(new Panel(600, 200, Player.HOSTILE));
-        elements.add(new Panel(100, 400, Player.HOSTILE));
-        elements.add(new Panel(200, 600, Player.HOSTILE));
-        elements.add(new Panel(1000, 800, Player.HOSTILE));
-        elements.add(new Panel(1400, 400, Player.HOSTILE));
+        next = new Panel(200, 200, Player.HOSTILE);
+        elements.add(next);
+        
+        next = new Panel(300, 300, Player.HOSTILE);
+        elements.add(next);
+        
+        
+        Unit test1 = next.clone();
+        test1.moveTo(new XYPair(400,400));
+        test1.energyregen += 100;
+        
+        elements.add(test1);
 
-        elements.add(new ItemUnit(new Grenade(), new XYPair(500, 500)));
+        //elements.add(new ItemUnit(new Grenade(), new XYPair(500, 500)));
+        
+        //elements.add(new Tower(700,700,localPlayer));
 
         // Awesome stuff here
     }
@@ -273,7 +282,6 @@ public class Game implements MouseListener, MouseMotionListener,
     public void leftClick(MouseEvent e) {
         mouse1State = true;
         Unit hit = checkHits(e);
-
         if (hit == null && cursor == SELECTION) {
 
             cursor = BASICATTACKTARGET;

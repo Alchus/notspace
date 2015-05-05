@@ -147,9 +147,7 @@ public abstract class Unit implements Serializable, Cloneable {
             for (Intent i : defaultIntents) {
                 copy.defaultIntents.add(i.clone());
             }
-            for (Intent i : intents) {
-                copy.intents.add(i.clone());
-            }
+            copy.intents.clear();
             return copy;
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
@@ -187,7 +185,6 @@ public abstract class Unit implements Serializable, Cloneable {
     public void damage(double amount, Unit source) {
         // TODO: shields
         health -= amount;
-        energy -= amount;
     }
 
     public void damage(double amount, Unit source, int type) {
